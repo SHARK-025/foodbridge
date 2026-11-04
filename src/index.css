@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+@theme {
+  --color-forest: #173D2B;
+  --color-forest-dark: #0e271b;
+  --color-forest-light: #23573e;
+  --color-cream: #F7F3E9;
+  --color-cream-light: #fcfbfa;
+  --color-cream-dark: #ece4d2;
+  --color-gold: #E7A64B;
+  --color-gold-hover: #d7963b;
+  --color-gold-light: #fbf0dc;
+  --color-sage: #DDE9D8;
+  --color-sage-light: #eef5ec;
+  --color-sage-dark: #c2d6bb;
+  --color-charcoal: #252A25;
+  --color-charcoal-muted: #556055;
+  --color-charcoal-light: #738073;
+
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Custom Base & Utilities */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color: #252A25;
+    background-color: #F7F3E9;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, .font-serif {
+    font-family: var(--font-serif);
+    text-wrap: balance;
+  }
+}
+
+/* Custom keyframes & micro-interactions */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulseSubtle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.92;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-float-gentle {
+  animation: floatGentle 4.5s ease-in-out infinite;
+}
+
+.animate-pulse-subtle {
+  animation: pulseSubtle 3s ease-in-out infinite;
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Editorial subtle paper texture overlay effect */
+.bg-subtle-grain {
+  background-image: radial-gradient(rgba(23, 61, 43, 0.035) 1px, transparent 0);
+  background-size: 20px 20px;
+}
+
+/* Custom delicate focus rings for accessibility */
+input:focus, select:focus, textarea:focus, button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(231, 166, 75, 0.45);
+}
+
+/* Reduced Motion Compliance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-marquee {
+    animation: none !important;
+  }
+}
